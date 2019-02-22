@@ -9,6 +9,7 @@ TagManager:
   - Cookie
   - PatrolPoint
   - Wall
+  - Bear
   layers:
   - Default
   - TransparentFX
