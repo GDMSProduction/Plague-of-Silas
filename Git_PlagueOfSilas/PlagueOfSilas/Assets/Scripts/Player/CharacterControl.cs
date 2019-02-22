@@ -265,12 +265,22 @@ public class CharacterControl : MonoBehaviour
         if (GetCurrentSpeed() == m_WalkSpeed)
         {
             colliders = Physics.OverlapSphere(transform.position, m_ModerateNoiseRadius);
+            foreach (Collider c in colliders)
+            {
+                if (c.CompareTag("Bear"))
+                    c.GetComponent<BearScript>().InvestigateSound(transform.position);
+            }
             m_DebugNewNoise = true;
             m_DebugNewNoiseRadius = m_ModerateNoiseRadius;
         }
         else if (GetCurrentSpeed() == m_RunSpeed)
         { 
             colliders = Physics.OverlapSphere(transform.position, m_LoudNoiseRadius);
+            foreach (Collider c in colliders)
+            {
+                if (c.CompareTag("Bear"))
+                    c.GetComponent<BearScript>().InvestigateSound(transform.position);
+            }
             m_DebugNewNoise = true;
             m_DebugNewNoiseRadius = m_LoudNoiseRadius;
 

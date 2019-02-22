@@ -471,8 +471,12 @@ public class BearScript : MonoBehaviour
         return SearchAreas[currentIndex].position;
     }
 
-    public void InvestigateSound()
+    public void InvestigateSound(Vector3 source)
     {
-        
+        if (currentState != BearState.chase && currentState != BearState.attack && currentState != BearState.stunned)
+        {
+            agent.SetDestination(source);
+            currentState = BearState.suspect;
+        }
     }
 }
