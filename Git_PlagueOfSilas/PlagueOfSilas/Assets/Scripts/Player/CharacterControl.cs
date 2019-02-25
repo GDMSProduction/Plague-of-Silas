@@ -34,6 +34,8 @@ public class CharacterControl : MonoBehaviour
     [SerializeField] private float m_LoudNoiseRadius;
     [SerializeField] [Range(1, 5)] private float m_MouseSensitivity = 3.0f;
     [SerializeField] private AudioClip[] m_FootSteps;
+    [SerializeField] LayerMask RaycastMask;
+    [SerializeField] float RayLength;
 
     private Animator m_Animator;
     private Rigidbody m_RigidBody;
@@ -198,14 +200,22 @@ public class CharacterControl : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Q))
         {
-            leanDest = m_MaxLeanAngle;
-            offset = -m_LeanXOffset;
+            Debug.DrawRay(transform.position, -transform.right);
+            if (!Physics.Raycast(transform.position, -transform.right, 0.75f, RaycastMask))
+            {
+                leanDest = m_MaxLeanAngle;
+                offset = -m_LeanXOffset;
+            }
         }
 
         else if (Input.GetKey(KeyCode.E))
         {
-            leanDest = -m_MaxLeanAngle;
-            offset = m_LeanXOffset;
+            Debug.DrawRay(transform.position, -transform.right);
+            if (!Physics.Raycast(transform.position, transform.right, 0.75f, RaycastMask))
+            {
+                leanDest = -m_MaxLeanAngle;
+                offset = m_LeanXOffset;
+            }
         }
 
         m_CurrentOffset = Mathf.MoveTowards(m_CurrentOffset, offset, m_LeanXSpeed * Time.deltaTime);
@@ -228,13 +238,13 @@ public class CharacterControl : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag != "Cookie")
+        if (other.tag != "Cookie")
             m_IsGrounded = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.tag != "Cookie")
+        if (other.tag != "Cookie")
             m_IsGrounded = false;
     }
 
@@ -274,7 +284,7 @@ public class CharacterControl : MonoBehaviour
             m_DebugNewNoiseRadius = m_ModerateNoiseRadius;
         }
         else if (GetCurrentSpeed() == m_RunSpeed)
-        { 
+        {
             colliders = Physics.OverlapSphere(transform.position, m_LoudNoiseRadius);
             foreach (Collider c in colliders)
             {
@@ -304,7 +314,7 @@ public class CharacterControl : MonoBehaviour
         m_RigidBody.AddForce(new Vector3(0, m_JumpForce, 0));
 
         // Wait until y velocity has passed a specific velocity
-        while(m_RigidBody.velocity.y <= 0.6f)
+        while (m_RigidBody.velocity.y <= 0.6f)
         {
             yield return null;
         }
@@ -330,7 +340,7 @@ public class CharacterControl : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if(m_DebugNewNoise)
+        if (m_DebugNewNoise)
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, m_DebugNewNoiseRadius);
@@ -343,6 +353,7 @@ public class CharacterControl : MonoBehaviour
     {
         return m_IsGrounded;
     }
+
 
     bool IsRunning()
     {
