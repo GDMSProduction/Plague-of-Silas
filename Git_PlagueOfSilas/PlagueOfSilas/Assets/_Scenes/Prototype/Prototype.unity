@@ -6485,6 +6485,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114904099062273732, guid: 01f28ab26e4f1d1449ab65b1d259200e,
+        type: 3}
+      propertyPath: m_Player
+      value: 
+      objectReference: {fileID: 1177829536}
+    - target: {fileID: 114904099062273732, guid: 01f28ab26e4f1d1449ab65b1d259200e,
+        type: 3}
+      propertyPath: m_Dog
+      value: 
+      objectReference: {fileID: 1939075351}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01f28ab26e4f1d1449ab65b1d259200e, type: 3}
 --- !u!43 &191970993
@@ -31075,6 +31085,12 @@ Transform:
   m_Father: {fileID: 813198050}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &1177829536 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1558831234028130, guid: a936914ab50f41d4d9b33829950c5c15,
+    type: 3}
+  m_PrefabInstance: {fileID: 136405195}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1187431061
 Mesh:
   m_ObjectHideFlags: 0
@@ -36868,6 +36884,18 @@ Transform:
   m_Father: {fileID: 515023647}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1939075351 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 318794455, guid: e2eb4b653a25a9d42928f2b7133a046f,
+    type: 3}
+  m_PrefabInstance: {fileID: 118164623}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5288f2b0f7496a45818e7bb01f5899a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1943023381
 Mesh:
   m_ObjectHideFlags: 0

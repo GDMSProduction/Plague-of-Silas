@@ -450,7 +450,7 @@ public class DogScript : MonoBehaviour
 
         if (m_IsPlayerInAttackRange && m_IsPlayerInSight)
         {
-            m_AttackSound.Play();
+            //m_AttackSound.Play();
             m_PlayerHead.parent.GetComponent<HealthScript>().DamagePlayer(25);
         }
         else
