@@ -168,7 +168,7 @@ public class CharacterControl : MonoBehaviour
 
         bool isWalking = IsMoving() && IsGrounded();
         m_Animator.SetBool("Walking", isWalking);
-        Debug.Log(IsGrounded());
+        //Debug.Log(IsGrounded());
     }
 
     private void ProcessPlayerActions()

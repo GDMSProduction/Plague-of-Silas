@@ -15,10 +15,12 @@ public class BaseGroundAi : MonoBehaviour
     [SerializeField] float SearchSpeed;
 
     [Header("Vision Stats")]
+    [SerializeField] bool CanSee;
     [SerializeField] float FieldOfView;
     [SerializeField] float SightRange;
 
     [Header("Tracking Stats")]
+    [SerializeField] bool CanSmell;
     [SerializeField] float SentRange;
     [SerializeField] float TrackingSpeed;
 
@@ -80,6 +82,8 @@ public class BaseGroundAi : MonoBehaviour
 
                 break;
             case State.Chasing:
+                Agent.speed = ChaseSpeed;
+
                 if (VisionCheck())
                 {
                     Agent.SetDestination(Player.position);
@@ -104,7 +108,6 @@ public class BaseGroundAi : MonoBehaviour
 
     void Patrol()
     {
-        Debug.Log(Agent.remainingDistance);
         if (Agent.remainingDistance < 1)
         {
             if (++CurrentPatrolPoint >= PatrolPoints.Count)
@@ -132,18 +135,24 @@ public class BaseGroundAi : MonoBehaviour
                 CurrentSent = CurrentSent.GetNext();
         }
 
+        if (CurrentSent == null)
+            SentCheck();
+
         Agent.SetDestination(CurrentSent.transform.position);
         Agent.speed = TrackingSpeed;
         return true;
     }
 
-    void Attack()
+    virtual protected void Attack()
     {
 
     }
 
     bool SentCheck()
     {
+        if (!CanSmell)
+            return false;
+
         foreach (Sent sent in Sent.Trail)
         {
             if(Vector3.Distance(transform.position, sent.transform.position) <= SentRange)
@@ -158,6 +167,9 @@ public class BaseGroundAi : MonoBehaviour
 
     bool VisionCheck()
     {
+        if (!CanSee)
+            return false;
+
         if (Vector3.Distance(transform.position, Player.position) <= SightRange)
         {
             if (Vector3.Angle(transform.forward, Player.position - transform.position) <= FieldOfView)
@@ -166,8 +178,9 @@ public class BaseGroundAi : MonoBehaviour
 
                 if (Physics.Raycast(transform.position + transform.forward, Player.position - (transform.position + transform.forward), out hit))
                 {
-                    Debug.DrawRay(transform.position + transform.forward, Player.position - (transform.position + transform.forward), Color.red);
 
+                    Debug.DrawRay(transform.position + transform.forward, Player.position - (transform.position + transform.forward), Color.red);
+                    Debug.Log(hit.collider.name);
                     if (hit.collider.gameObject.transform == Player)
                         return true;
 

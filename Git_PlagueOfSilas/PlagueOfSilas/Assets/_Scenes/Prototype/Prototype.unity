@@ -3452,7 +3452,7 @@ PrefabInstance:
     - target: {fileID: 114127278123477374, guid: a936914ab50f41d4d9b33829950c5c15,
         type: 3}
       propertyPath: m_CookieSpawnFrecuency
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114127278123477374, guid: a936914ab50f41d4d9b33829950c5c15,
         type: 3}
@@ -27535,15 +27535,17 @@ MonoBehaviour:
   - {fileID: 2132829746}
   - {fileID: 1103021315}
   - {fileID: 1688419056}
-  PatrolSpeed: 1
+  PatrolSpeed: 3
   MaxSearchTime: 0
   SearchSpeed: 0
-  FieldOfView: 0
-  SightRange: 0
-  SentRange: 2
-  TrackingSpeed: 0.5
+  CanSee: 1
+  FieldOfView: 45
+  SightRange: 20
+  CanSmell: 1
+  SentRange: 5
+  TrackingSpeed: 2
   AttackRange: 0
-  ChaseSpeed: 0
+  ChaseSpeed: 4
 --- !u!1 &1065496336
 GameObject:
   m_ObjectHideFlags: 0
@@ -33418,25 +33420,6 @@ Transform:
   m_Father: {fileID: 813198050}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1388836144 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1779346639291974, guid: a936914ab50f41d4d9b33829950c5c15,
-    type: 3}
-  m_PrefabInstance: {fileID: 136405195}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1388836146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1388836144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcd954a8970520248839f502474907b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LifeTime: 3
 --- !u!43 &1399466432
 Mesh:
   m_ObjectHideFlags: 0
