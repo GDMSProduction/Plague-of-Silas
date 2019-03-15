@@ -6,13 +6,31 @@ using UnityEngine.AI;
 public class BaseGroundAi : MonoBehaviour
 {
     [SerializeField] State CurrentState;
+    [Header("Patrol Stats")]
     [SerializeField] List<Transform> PatrolPoints;
+    [SerializeField] float PatrolSpeed;
+
+    [Header("Search Stats")]
+    [SerializeField] float MaxSearchTime;
+    [SerializeField] float SearchSpeed;
+
+    [Header("Vision Stats")]
     [SerializeField] float FieldOfView;
     [SerializeField] float SightRange;
+
+    [Header("Tracking Stats")]
+    [SerializeField] float SentRange;
+    [SerializeField] float TrackingSpeed;
+
+    [Header("Attack Stats")]
     [SerializeField] float AttackRange;
+    [SerializeField] float ChaseSpeed;
+    
+
     Transform Player;
     Vector3 PointOfInterest;
     NavMeshAgent Agent;
+    Sent CurrentSent;
 
     int CurrentPatrolPoint = 0;
 
@@ -54,7 +72,8 @@ public class BaseGroundAi : MonoBehaviour
 
                 break;
             case State.Tracking:
-                Track();
+                if (!Track())
+                    CurrentState = State.Searching;
 
                 if (VisionCheck())
                     CurrentState = State.Chasing;
@@ -73,6 +92,7 @@ public class BaseGroundAi : MonoBehaviour
 
                 break;
             case State.Attacking:
+                Attack();
 
                 if (Vector3.Distance(transform.position, Player.position) > AttackRange)
                     CurrentState = State.Chasing;
@@ -92,17 +112,29 @@ public class BaseGroundAi : MonoBehaviour
 
         }
 
+        Agent.speed = PatrolSpeed;
         Agent.SetDestination(PatrolPoints[CurrentPatrolPoint].position);
     }
 
     void SearchArea()
     {
 
+        Agent.speed = SearchSpeed;
     }
 
-    void Track()
+    bool Track()
     {
+        if (Agent.remainingDistance < 1)
+        {
+            if (CurrentSent.GetNext() == null)
+                return false;
+            else
+                CurrentSent = CurrentSent.GetNext();
+        }
 
+        Agent.SetDestination(CurrentSent.transform.position);
+        Agent.speed = TrackingSpeed;
+        return true;
     }
 
     void Attack()
@@ -112,6 +144,14 @@ public class BaseGroundAi : MonoBehaviour
 
     bool SentCheck()
     {
+        foreach (Sent sent in Sent.Trail)
+        {
+            if(Vector3.Distance(transform.position, sent.transform.position) <= SentRange)
+            {
+                CurrentSent = sent;
+                return true;
+            }
+        }
 
         return false;
     }
@@ -138,6 +178,12 @@ public class BaseGroundAi : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void Alert(Transform transform)
+    {
+        PointOfInterest = transform.position;
+        CurrentState = State.Chasing;
     }
 
 }

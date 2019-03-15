@@ -12,7 +12,7 @@ public class CharacterControl : MonoBehaviour
 
     [SerializeField] float m_CookieSpawnTimer;
 
-    GameObject m_CookieRef;
+    [SerializeField] GameObject m_CookieRef;
 
     GameObject m_PreviousCookie;
 
@@ -66,7 +66,6 @@ public class CharacterControl : MonoBehaviour
     private void Start()
     {
         // Cookie 
-        m_CookieRef = transform.Find("Cookie").gameObject;
         m_CookieSpawnTimer = 0;
         m_SpawnCookies = true;
         m_PreviousCookie = m_CookieRef;
@@ -128,14 +127,6 @@ public class CharacterControl : MonoBehaviour
                 newCookie.transform.parent = null;
                 newCookie.transform.position = transform.position;
                 newCookie.SetActive(true);
-
-                //Update p+revious cookie
-                if (m_PreviousCookie != null)
-                {
-                    CookieScript test = m_PreviousCookie.GetComponent<CookieScript>();
-
-                    test.m_NextCookie = newCookie;
-                }
 
                 m_PreviousCookie = newCookie;
 
