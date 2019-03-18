@@ -27536,12 +27536,14 @@ MonoBehaviour:
   - {fileID: 1103021315}
   - {fileID: 1688419056}
   PatrolSpeed: 3
-  MaxSearchTime: 0
-  SearchSpeed: 0
+  MaxSearchTime: 30
+  SearchSpeed: 1
+  SearchRange: 10
+  SearchTime: 5
   CanSee: 1
   FieldOfView: 45
   SightRange: 20
-  CanSmell: 1
+  CanSmell: 0
   SentRange: 5
   TrackingSpeed: 2
   AttackRange: 0

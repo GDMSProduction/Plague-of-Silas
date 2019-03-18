@@ -15,7 +15,10 @@ public class Sent : MonoBehaviour
             Trail = new List<Sent>();
 
         Trail.Insert(0, this);
-        Trail[1].SetNext(this);
+
+        if (Trail.Count > 1)
+            Trail[1].SetNext(this);
+        
     }
 
     private void OnDestroy()

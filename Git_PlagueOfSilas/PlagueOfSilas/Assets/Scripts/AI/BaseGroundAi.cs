@@ -13,6 +13,8 @@ public class BaseGroundAi : MonoBehaviour
     [Header("Search Stats")]
     [SerializeField] float MaxSearchTime;
     [SerializeField] float SearchSpeed;
+    [SerializeField] float SearchRange;
+    [SerializeField] float SearchTime;
 
     [Header("Vision Stats")]
     [SerializeField] bool CanSee;
@@ -33,6 +35,8 @@ public class BaseGroundAi : MonoBehaviour
     Vector3 PointOfInterest;
     NavMeshAgent Agent;
     Sent CurrentSent;
+    float Timer1 = 0;
+    float Timer2 = 0;
 
     int CurrentPatrolPoint = 0;
 
@@ -57,28 +61,29 @@ public class BaseGroundAi : MonoBehaviour
                 Patrol();
 
                 if (SentCheck())
-                    CurrentState = State.Tracking;
+                   ChangeState(State.Tracking);
 
                 if (VisionCheck())
-                    CurrentState = State.Chasing;
+                    ChangeState(State.Chasing);
 
                 break;
             case State.Searching:
-                SearchArea();
+                if (!SearchArea())
+                    ChangeState(State.Partoling);
 
                 if (SentCheck())
-                    CurrentState = State.Tracking;
+                    ChangeState(State.Tracking);
 
                 if (VisionCheck())
-                    CurrentState = State.Chasing;
+                    ChangeState(State.Chasing);
 
                 break;
             case State.Tracking:
                 if (!Track())
-                    CurrentState = State.Searching;
+                    ChangeState(State.Searching);
 
                 if (VisionCheck())
-                    CurrentState = State.Chasing;
+                    ChangeState(State.Chasing);
 
                 break;
             case State.Chasing:
@@ -89,10 +94,10 @@ public class BaseGroundAi : MonoBehaviour
                     Agent.SetDestination(Player.position);
 
                     if (Agent.remainingDistance < AttackRange)
-                        CurrentState = State.Attacking;
+                        ChangeState(State.Attacking);
                 }
                 else if (Agent.remainingDistance < 1)
-                    CurrentState = State.Searching;
+                    ChangeState(State.Searching);
 
                 break;
             case State.Attacking:
@@ -119,10 +124,29 @@ public class BaseGroundAi : MonoBehaviour
         Agent.SetDestination(PatrolPoints[CurrentPatrolPoint].position);
     }
 
-    void SearchArea()
+    bool SearchArea()
     {
+        if (Timer2 > MaxSearchTime)
+            return false;
+        else
+            Timer2 += Time.deltaTime;
+
+        if (Timer1 < 0)
+        {
+            Vector3 Point = (Random.insideUnitSphere * SearchRange) + PointOfInterest;
+
+            NavMeshHit hit;
+            NavMesh.SamplePosition(Point, out hit, SearchRange, 1);
+
+            Agent.SetDestination(hit.position);
+
+            Timer1 = SearchTime;
+        }
+        else
+            Timer1 -= Time.deltaTime;
 
         Agent.speed = SearchSpeed;
+        return true;
     }
 
     bool Track()
@@ -137,8 +161,9 @@ public class BaseGroundAi : MonoBehaviour
 
         if (CurrentSent == null)
             SentCheck();
+        else
+            Agent.SetDestination(CurrentSent.transform.position);
 
-        Agent.SetDestination(CurrentSent.transform.position);
         Agent.speed = TrackingSpeed;
         return true;
     }
@@ -150,7 +175,7 @@ public class BaseGroundAi : MonoBehaviour
 
     bool SentCheck()
     {
-        if (!CanSmell)
+        if (!CanSmell || Sent.Trail == null)
             return false;
 
         foreach (Sent sent in Sent.Trail)
@@ -158,6 +183,7 @@ public class BaseGroundAi : MonoBehaviour
             if(Vector3.Distance(transform.position, sent.transform.position) <= SentRange)
             {
                 CurrentSent = sent;
+                PointOfInterest = CurrentSent.transform.position;
                 return true;
             }
         }
@@ -182,8 +208,10 @@ public class BaseGroundAi : MonoBehaviour
                     Debug.DrawRay(transform.position + transform.forward, Player.position - (transform.position + transform.forward), Color.red);
                     Debug.Log(hit.collider.name);
                     if (hit.collider.gameObject.transform == Player)
+                    {
+                        PointOfInterest = Player.position; 
                         return true;
-
+                    }
                 }
 
             }
@@ -199,6 +227,12 @@ public class BaseGroundAi : MonoBehaviour
         CurrentState = State.Chasing;
     }
 
+    public void ChangeState(State state)
+    {
+        Timer1 = 0;
+        Timer2 = 0;
+        CurrentState = state;
+    }
 }
 
 public enum State { Partoling, Searching, Tracking, Chasing, Attacking }
