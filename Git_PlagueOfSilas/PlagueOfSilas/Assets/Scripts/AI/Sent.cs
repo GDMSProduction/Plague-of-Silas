@@ -34,6 +34,15 @@ public class Sent : MonoBehaviour
             Destroy(gameObject);
     }
 
+    private void OnDrawGizmos()
+    {
+        if(Next != null)
+        {
+            Gizmos.color = Color.white;
+            Gizmos.DrawLine(transform.position, Next.transform.position);
+        }
+    }
+
     public void SetNext(Sent sent) { Next = sent; }
     public Sent GetNext() { return Next; }
 }

@@ -221,10 +221,11 @@ public class BaseGroundAi : MonoBehaviour
         return false;
     }
 
-    public void Alert(Transform transform)
+    public void Alert(Transform _point)
     {
-        PointOfInterest = transform.position;
+        PointOfInterest = _point.position;
         CurrentState = State.Chasing;
+        Agent.SetDestination(_point.position);
     }
 
     public void ChangeState(State state)
@@ -232,6 +233,19 @@ public class BaseGroundAi : MonoBehaviour
         Timer1 = 0;
         Timer2 = 0;
         CurrentState = state;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (CanSmell)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, SentRange);
+        }
+        if(CanSee)
+        {
+
+        }
     }
 }
 
