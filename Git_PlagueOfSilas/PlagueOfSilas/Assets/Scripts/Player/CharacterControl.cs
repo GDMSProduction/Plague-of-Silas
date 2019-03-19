@@ -30,8 +30,8 @@ public class CharacterControl : MonoBehaviour
     [SerializeField] private float m_LeanXSpeed = 1.0f;
     [SerializeField] private float m_LeanRotationSpeed = 60.0f;
     [SerializeField] private float m_MaxLeanAngle = 15.0f;
-    [SerializeField] private float m_ModerateNoiseRadius;
-    [SerializeField] private float m_LoudNoiseRadius;
+    [SerializeField] private GameObject m_ModerateNoiseRadius;
+    [SerializeField] private GameObject m_LoudNoiseRadius;
     [SerializeField] [Range(1, 5)] private float m_MouseSensitivity = 3.0f;
     [SerializeField] private AudioClip[] m_FootSteps;
     [SerializeField] LayerMask RaycastMask;
@@ -265,26 +265,13 @@ public class CharacterControl : MonoBehaviour
         Collider[] colliders;
         if (GetCurrentSpeed() == m_WalkSpeed)
         {
-            colliders = Physics.OverlapSphere(transform.position, m_ModerateNoiseRadius);
-            foreach (Collider c in colliders)
-            {
-                if (c.CompareTag("Bear"))
-                    c.GetComponent<BearScript>().InvestigateSound(transform.position);
-            }
-            m_DebugNewNoise = true;
-            m_DebugNewNoiseRadius = m_ModerateNoiseRadius;
+            if (m_ModerateNoiseRadius != null)
+                Instantiate(m_ModerateNoiseRadius, transform.position, transform.rotation);
         }
         else if (GetCurrentSpeed() == m_RunSpeed)
         {
-            colliders = Physics.OverlapSphere(transform.position, m_LoudNoiseRadius);
-            foreach (Collider c in colliders)
-            {
-                if (c.CompareTag("Bear"))
-                    c.GetComponent<BearScript>().InvestigateSound(transform.position);
-            }
-            m_DebugNewNoise = true;
-            m_DebugNewNoiseRadius = m_LoudNoiseRadius;
-
+            if (m_LoudNoiseRadius != null)
+                Instantiate(m_LoudNoiseRadius, transform.position, transform.rotation);
         }
     }
 
