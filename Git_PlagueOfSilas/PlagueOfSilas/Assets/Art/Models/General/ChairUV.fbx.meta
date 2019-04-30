@@ -1,0 +1,211 @@
+fileFormatVersion: 2
+guid: 7138e6581e340cc40b8d6c5bb31bd9e6
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: ArmRestSupportLeft_high
+    100002: ArmRestSupportRight_high
+    100004: BackBottomArch
+    100006: BackCushion_high
+    100008: BackDetail1
+    100010: BackDetail2
+    100012: BackDetail3
+    100014: BackDetail4
+    100016: BackLeftLeg_high
+    100018: BackRightLeg_high
+    100020: BackTopArch_high
+    100022: ChairBack_high
+    100024: //RootNode
+    100026: curve1
+    100028: DetailTopCenter_high
+    100030: FrontLeftLeg_high
+    100032: FrontRightLeg_high
+    100034: LeftArm_high
+    100036: LeftSpire_high
+    100038: Lyre_high
+    100040: LyreTop_high
+    100042: RightArm_high
+    100044: RightSpire_high
+    100046: Seat_high
+    100048: SeatCushion_high
+    400000: ArmRestSupportLeft_high
+    400002: ArmRestSupportRight_high
+    400004: BackBottomArch
+    400006: BackCushion_high
+    400008: BackDetail1
+    400010: BackDetail2
+    400012: BackDetail3
+    400014: BackDetail4
+    400016: BackLeftLeg_high
+    400018: BackRightLeg_high
+    400020: BackTopArch_high
+    400022: ChairBack_high
+    400024: //RootNode
+    400026: curve1
+    400028: DetailTopCenter_high
+    400030: FrontLeftLeg_high
+    400032: FrontRightLeg_high
+    400034: LeftArm_high
+    400036: LeftSpire_high
+    400038: Lyre_high
+    400040: LyreTop_high
+    400042: RightArm_high
+    400044: RightSpire_high
+    400046: Seat_high
+    400048: SeatCushion_high
+    2100000: blinn2
+    2300000: ArmRestSupportLeft_high
+    2300002: ArmRestSupportRight_high
+    2300004: BackBottomArch
+    2300006: BackCushion_high
+    2300008: BackDetail1
+    2300010: BackDetail2
+    2300012: BackDetail3
+    2300014: BackDetail4
+    2300016: BackLeftLeg_high
+    2300018: BackRightLeg_high
+    2300020: BackTopArch_high
+    2300022: ChairBack_high
+    2300024: DetailTopCenter_high
+    2300026: FrontLeftLeg_high
+    2300028: FrontRightLeg_high
+    2300030: LeftArm_high
+    2300032: LeftSpire_high
+    2300034: Lyre_high
+    2300036: LyreTop_high
+    2300038: RightArm_high
+    2300040: RightSpire_high
+    2300042: Seat_high
+    2300044: SeatCushion_high
+    3300000: ArmRestSupportLeft_high
+    3300002: ArmRestSupportRight_high
+    3300004: BackBottomArch
+    3300006: BackCushion_high
+    3300008: BackDetail1
+    3300010: BackDetail2
+    3300012: BackDetail3
+    3300014: BackDetail4
+    3300016: BackLeftLeg_high
+    3300018: BackRightLeg_high
+    3300020: BackTopArch_high
+    3300022: ChairBack_high
+    3300024: DetailTopCenter_high
+    3300026: FrontLeftLeg_high
+    3300028: FrontRightLeg_high
+    3300030: LeftArm_high
+    3300032: LeftSpire_high
+    3300034: Lyre_high
+    3300036: LyreTop_high
+    3300038: RightArm_high
+    3300040: RightSpire_high
+    3300042: Seat_high
+    3300044: SeatCushion_high
+    4300000: Seat_high
+    4300002: FrontLeftLeg_high
+    4300004: BackTopArch_high
+    4300006: Lyre_high
+    4300008: LyreTop_high
+    4300010: ChairBack_high
+    4300012: DetailTopCenter_high
+    4300014: BackBottomArch
+    4300016: BackDetail1
+    4300018: BackDetail2
+    4300020: BackDetail3
+    4300022: BackDetail4
+    4300024: ArmRestSupportLeft_high
+    4300026: ArmRestSupportRight_high
+    4300028: LeftArm_high
+    4300030: BackCushion_high
+    4300032: RightArm_high
+    4300034: LeftSpire_high
+    4300036: SeatCushion_high
+    4300038: RightSpire_high
+    4300040: FrontRightLeg_high
+    4300042: BackRightLeg_high
+    4300044: BackLeftLeg_high
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
