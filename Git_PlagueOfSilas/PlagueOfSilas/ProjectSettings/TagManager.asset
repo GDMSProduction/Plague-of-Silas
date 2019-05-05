@@ -10,6 +10,10 @@ TagManager:
   - PatrolPoint
   - Wall
   - Bear
+  - CanSave
+  - SliderX
+  - SliderY
+  - SliderZ
   layers:
   - Default
   - TransparentFX
